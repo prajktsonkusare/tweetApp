@@ -80,7 +80,7 @@ WSGI_APPLICATION = "tweetApp.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.getenv('DATABASE_PATH', os.path.join(BASE_DIR, 'db.sqlite3')),  # Use the environment variable or fall back to the default
         'OPTIONS': {
             'timeout': 20,
         }
