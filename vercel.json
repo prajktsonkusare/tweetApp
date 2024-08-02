@@ -1,13 +1,30 @@
 {
-    "builds": [{
-        "src": "tweetApp/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
-    }],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "tweetApp/wsgi.py"
-        }
-    ]
+  "build": {
+    "env": {
+      "DATABASE_PATH": "/tmp/db.sqlite3"
+    }
+  },
+  "builds": [
+    {
+      "src": "tweetApp/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "tweetApp/wsgi.py"
+    }
+  ],
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "python3.12"
+    }
+  },
+  "scripts": {
+    "build": "sh run_migrations.sh"
+  }
 }
