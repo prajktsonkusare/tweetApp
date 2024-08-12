@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+  <h2>Search Results for "{{ query }}"</h2>
+  <ul>
+    {% for tweet in results %}
+      <li>{{ tweet.text }} by {{ tweet.user.username }}</li>
+    {% empty %}
+      <li>No results found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'tweet_list' %}">Back to Tweet List</a>
+{% endblock %}
