@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-5bp6*c2mkdrm%jl46iq#p!75z5-jhp)^eno@c5%=vg+dlc+d2e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -77,13 +77,20 @@ WSGI_APPLICATION = "tweetApp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.getenv('DATABASE_PATH', os.path.join(BASE_DIR, 'db.sqlite3')),  # Use the environment variable or fall back to the default
-        'OPTIONS': {
-            'timeout': 20,
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tweetApp',
+        'USER': 'prajkt',
+        'PASSWORD': 'pearl129',
+        'HOST': 'localhost',  # or the hostname of your PostgreSQL container
+        'PORT': '5432',
     }
 }
 
